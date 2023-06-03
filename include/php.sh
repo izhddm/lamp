@@ -37,11 +37,11 @@ install_php(){
     --with-openssl \
     --with-snmp \
     ${with_libdir} \
-    --with-pgsql \
     --enable-mysqlnd \
     --with-mysqli=mysqlnd \
     --with-mysql-sock=/tmp/mysql.sock \
     --with-pdo-mysql=mysqlnd \
+    --with-pgsql=/usr/share/postgresql/9.6 \
     --enable-gd \
     --with-webp \
     --with-jpeg \
