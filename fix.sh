@@ -47,3 +47,15 @@ else
   echo "Apache не запущен. Выполняется запуск..."
   sudo /etc/init.d/httpd start
 fi
+
+# PostgreSQL
+# Генерация случайного пароля
+password=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 8)
+
+# Создание нового пользователя PostgreSQL
+sudo -u postgres psql -c "CREATE USER app WITH PASSWORD '$password';"
+
+# Вывод пароля в консоль
+echo "Сгенерированный пароль для пользователя app базы PostgreSQL: $password"
+echo "Запомните этот пароль, он нужен будет далее по инструкции"
+
