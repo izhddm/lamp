@@ -41,7 +41,7 @@ install_php(){
     --with-mysqli=mysqlnd \
     --with-mysql-sock=/tmp/mysql.sock \
     --with-pdo-mysql=mysqlnd \
-    --with-pgsql=/usr/share/postgresql/9.6 \
+    --with-pgsql=/usr/include/postgresql \
     --enable-gd \
     --with-webp \
     --with-jpeg \

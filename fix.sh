@@ -28,11 +28,22 @@ sudo sed -i 's/upload_max_filesize = .*/upload_max_filesize = 500M/' /usr/local/
 # Замена значения memory_limit
 sudo sed -i 's/memory_limit = .*/memory_limit = 256M/' /usr/local/php/etc/php.ini
 
+
+# Проверка наличия строки 'extension=pgsql' в файле php.ini
+if grep -Fxq 'extension=pgsql' /usr/local/php/etc/php.ini
+then
+    # Если строка уже существует, раскомментирование
+    sudo sed -i 's/;extension=pgsql/extension=pgsql/' /usr/local/php/etc/php.ini
+else
+    # Если строки нет, добавление строки в конец файла
+    echo 'extension=pgsql' | sudo tee -a /usr/local/php/etc/php.ini > /dev/null
+fi
+
 # Проверка, запущен ли Apache
-if pgrep -x "apache2" >/dev/null; then
+if pgrep -x "httpd" >/dev/null; then
   echo "Apache уже запущен. Выполняется перезапуск..."
-  sudo /etc/init.d/apache2 restart
+  sudo /etc/init.d/httpd restart
 else
   echo "Apache не запущен. Выполняется запуск..."
-  sudo /etc/init.d/apache2 start
+  sudo /etc/init.d/httpd start
 fi
