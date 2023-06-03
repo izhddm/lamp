@@ -36,19 +36,3 @@ else
   echo "Apache не запущен. Выполняется запуск..."
   sudo /etc/init.d/apache2 start
 fi
-
-echo "Введите имя пользователя PostgreSQL:"
-read username
-
-# Создание пользователя
-sudo -u postgres psql -c "CREATE USER $username;"
-
-# Запрос имени базы данных
-echo "Введите имя базы данных PostgreSQL:"
-read dbname
-
-# Создание базы данных и назначение прав доступа
-sudo -u postgres psql -c "CREATE DATABASE $dbname;"
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $dbname TO $username;"
-
-echo "Пользователь '$username' и база данных '$dbname' успешно созданы."
