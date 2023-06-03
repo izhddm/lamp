@@ -37,6 +37,7 @@ install_php(){
     --with-openssl \
     --with-snmp \
     ${with_libdir} \
+    --with-pgsql \
     --enable-mysqlnd \
     --with-mysqli=mysqlnd \
     --with-mysql-sock=/tmp/mysql.sock \
